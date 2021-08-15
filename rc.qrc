@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="glass">
+    <file>img/glass.png</file>
+  </qresource>
+  <qresource prefix="menubuttons">
+    <file>img/close.png</file>
+  </qresource>
+  <qresource prefix="extract">
+    <file>img/extract.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,15 @@
+#Python interpreter cache
+**/__pycache__
+
+#IDE pref folder
+.idea/
+
+#ini files
+*.ini
+
+#venv
+Scripts/
+lib/
+include/
+bin/
+pyvenv.cfg
