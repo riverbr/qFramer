@@ -375,11 +375,6 @@ border-radius: 2px;</string>
     </item>
    </layout>
   </widget>
-  <action name="actionExit">
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </action>
  </widget>
  <resources>
   <include location="../../rc.qrc"/>

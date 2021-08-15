@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowVRHjrA.ui'
+## Form generated from reading UI file 'ui_main_windowwMlCtW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.1.2
 ##
@@ -20,8 +20,6 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(900, 520)
         MainWindow.setMinimumSize(QSize(900, 520))
-        self.actionExit = QAction(MainWindow)
-        self.actionExit.setObjectName(u"actionExit")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -188,7 +186,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.actionExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.top_label.setText(QCoreApplication.translate("MainWindow", u"qFramer", None))
         self.btn_close.setText("")
         self.btn_extract.setText(QCoreApplication.translate("MainWindow", u"Extract", None))

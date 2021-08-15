@@ -4,8 +4,6 @@ import os
 from qt_core import *
 
 from gui.windows.ui_main_window import *
-from video_processing import *
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
