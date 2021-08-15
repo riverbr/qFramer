@@ -2,10 +2,11 @@
   <qresource prefix="glass">
     <file>img/glass.png</file>
   </qresource>
-  <qresource prefix="menubuttons">
+  <qresource prefix="system_icons">
     <file>img/close.png</file>
   </qresource>
-  <qresource prefix="extract">
+  <qresource prefix="menu">
+    <file>img/info.png</file>
     <file>img/extract.png</file>
   </qresource>
 </RCC>

@@ -120,7 +120,7 @@
          </property>
          <property name="icon">
           <iconset resource="../../rc.qrc">
-           <normaloff>:/menubuttons/img/close.png</normaloff>:/menubuttons/img/close.png</iconset>
+           <normaloff>:/system_icons/img/close.png</normaloff>:/system_icons/img/close.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -170,7 +170,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QToolButton" name="toolButton">
+        <widget class="QToolButton" name="btn_extract">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -185,7 +185,7 @@
          </property>
          <property name="icon">
           <iconset resource="../../rc.qrc">
-           <normaloff>:/extract/img/extract.png</normaloff>:/extract/img/extract.png</iconset>
+           <normaloff>:/menu/img/extract.png</normaloff>:/menu/img/extract.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -216,6 +216,32 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="btn_about">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>48</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../rc.qrc">
+           <normaloff>:/menu/img/info.png</normaloff>:/menu/img/info.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>28</width>
+           <height>28</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
