@@ -8,14 +8,14 @@ class ExtractFrames:
         super().__init__()
 
         self.video_file = ""
+        self.video_file_name = ""
         self.frames_dir = ""
         self.frame_count = 0
 
     def extract(self):
-        video_name = self.video_file[0]
+        video_name = self.video_file_name
         vidcap = cv2.VideoCapture(video_name)
         self.frame_count = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
-        print(self.frame_count)
         success, image = vidcap.read()
         count = 0
         while success:
