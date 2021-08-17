@@ -83,9 +83,8 @@ class MainWindow(QMainWindow):
         self.ui.progress_bar.setValue(0)
         self.ui.progress_bar.setRange(0, frame_count)
         self.ui.progress_bar.show()
-        for i in range(frame_count):
-            print(self.extract_frames.count + 1)
-            self.ui.progress_bar.setValue(i + 1)
+        while self.extract_frames.count < frame_count:
+            self.ui.progress_bar.setValue(self.extract_frames.count)
             QApplication.processEvents()
             time.sleep(0.01)
 
