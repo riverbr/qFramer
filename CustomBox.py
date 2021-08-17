@@ -20,3 +20,12 @@ class BoxError(Box):
         super(BoxError, self).__init__()
         self.setIcon(QMessageBox.Warning)
         self.setWindowTitle('Error')
+
+
+class BoxYesNo(Box):
+    def __init__(self):
+        super(BoxYesNo, self).__init__()
+        self.setIcon(QMessageBox.Question)
+        self.setWindowTitle('Confirm')
+        self.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        self.button_yes = self.button(QMessageBox.Yes)
