@@ -1,10 +1,11 @@
+import time
+
 import cv2
 from qt_core import *
 
 
 class ExtractFrames(QObject):
     finished = Signal()
-    progress = Signal(int)
 
     def __init__(self):
         super().__init__()
