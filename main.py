@@ -13,7 +13,6 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.ui = Ui_MainWindow()
-        self.extract_frames = ExtractFrames()
         self.ui.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.btn_open_video.clicked.connect(self.open_video_file)
@@ -29,8 +28,12 @@ class MainWindow(QMainWindow):
 
     def open_video_file(self):
         files_filter = "Video files (*.mp4 *.mkv *.webm *.avi)"
-        self.extract_frames.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
-        self.ui.video_directory.setText(self.extract_frames.video_file[0])
+        video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
+        self.ui.video_directory.setText(
+            video_file[0]
+        )
+        # self.extract_frames.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
+        # self.ui.video_directory.setText(self.extract_frames.video_file[0])
 
     def select_frames_dir(self):
         self.ui.frames_directory.setText(
@@ -42,8 +45,10 @@ class MainWindow(QMainWindow):
 
     def validate_file_dir(self):
         message_box = BoxError()
-        is_file = os.path.isfile(self.extract_frames.video_file_name)
-        is_dir = os.path.isdir(self.extract_frames.frames_dir)
+        video_file = self.ui.video_directory.text()
+        frames_dir = self.ui.frames_directory.text()
+        is_file = os.path.isfile(video_file)
+        is_dir = os.path.isdir(frames_dir)
         if not is_file:
             message_box.setText("Select a valid video file.")
             message_box.exec()
@@ -57,29 +62,38 @@ class MainWindow(QMainWindow):
         return True
 
     def start_extraction(self):
+        self.extract_frames = ExtractFrames()
         self.extract_frames.video_file_name = self.ui.video_directory.text()
         self.extract_frames.frames_dir = self.ui.frames_directory.text()
         if self.validate_file_dir():
+            self.ui.btn_extract.setEnabled(False)
             self.extract_frames.load_video()
             self.thread = QThread()
             self.extract_frames.moveToThread(self.thread)
             self.thread.started.connect(self.extract_frames.extract)
             self.extract_frames.finished.connect(self.thread.quit)
-            # self.extract_frames.finished.connect(self.extract_frames.deleteLater)
+            self.extract_frames.finished.connect(self.extract_frames.deleteLater)
             self.thread.finished.connect(self.thread.deleteLater)
             self.thread.finished.connect(self.finish_extraction)
             self.thread.start()
             # self.ui.progress_bar.setValue(0)
-            frame_count = self.extract_frames.frame_count
-            self.ui.progress_bar.setValue(0)
-            self.ui.progress_bar.setMinimum(0)
-            self.ui.progress_bar.setMaximum(frame_count)
-            self.ui.progress_bar.show()
-            for i in range(frame_count):
-                time.sleep(0.01)
-                self.ui.progress_bar.setValue(i + 1)
+            self.update_progress_bar()
+
+    def update_progress_bar(self):
+        frame_count = self.extract_frames.frame_count
+        self.ui.progress_bar.setValue(0)
+        self.ui.progress_bar.setRange(0, frame_count)
+        self.ui.progress_bar.show()
+        for i in range(frame_count):
+            self.ui.progress_bar.setValue(i + 1)
+            QApplication.processEvents()
+            time.sleep(0.01)
+
+    def setProgress(self, progress):
+        self.ui.progress_bar.setValue(progress)
 
     def finish_extraction(self):
+        self.ui.btn_extract.setEnabled(True)
         self.ui.progress_bar.hide()
 
     def set_bar_value(self):
