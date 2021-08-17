@@ -51,13 +51,22 @@ class MainWindow(QMainWindow):
         video_file = self.ui.video_directory.text()
         frames_dir = self.ui.frames_directory.text()
         is_file = os.path.isfile(video_file)
-        is_dir = os.path.isdir(frames_dir)
+        is_abs = os.path.isabs(frames_dir)
         if not is_file:
             message_box.setText("Select a valid video file.")
             message_box.exec()
             self.ui.video_directory.setFocus()
             return False
-        if not is_dir:
+        if is_abs:
+            if not os.path.exists(frames_dir):
+                message_box = BoxYesNo()
+                message_box.setText("Folder doesn't exist. Create folder?")
+                message_box.exec_()
+                if message_box.clickedButton() == message_box.button_yes:
+                    os.makedirs(frames_dir, 0o777)
+                else:
+                    return False
+        else:
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
