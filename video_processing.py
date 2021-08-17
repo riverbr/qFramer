@@ -1,8 +1,10 @@
 import cv2
-import threading
+from qt_core import *
 
 
-class ExtractFrames:
+class ExtractFrames(QObject):
+    finished = Signal()
+    progress = Signal(int)
 
     def __init__(self):
         super().__init__()
@@ -11,20 +13,20 @@ class ExtractFrames:
         self.video_file_name = ""
         self.frames_dir = ""
         self.frame_count = 0
+        self.count = 0
+
+    def load_video(self):
+        self.frames_dir.replace("\\", "/")
+        self.video_name = self.video_file_name
+        self.vidcap = cv2.VideoCapture(self.video_name)
+        self.frame_count = int(self.vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     def extract(self):
-        video_name = self.video_file_name
-        vidcap = cv2.VideoCapture(video_name)
-        self.frame_count = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
-        success, image = vidcap.read()
-        count = 0
+        success, image = self.vidcap.read()
+        self.count = 0
         while success:
             frame_dir_name = f"{self.frames_dir}/frame%d.jpg"
-            cv2.imwrite(frame_dir_name % count, image)
-            success, image = vidcap.read()
-            # print('Read a new frame: ', success)
-            count += 1
-
-    def thread_extraction(self):
-        extract_thread = threading.Thread(target=self.extract)
-        extract_thread.start()
+            cv2.imwrite(frame_dir_name % self.count, image)
+            success, image = self.vidcap.read()
+            self.count += 1
+        self.finished.emit()
