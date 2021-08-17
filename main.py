@@ -76,7 +76,6 @@ class MainWindow(QMainWindow):
             self.thread.finished.connect(self.thread.deleteLater)
             self.thread.finished.connect(self.finish_extraction)
             self.thread.start()
-            # self.ui.progress_bar.setValue(0)
             self.update_progress_bar()
 
     def update_progress_bar(self):
@@ -85,6 +84,7 @@ class MainWindow(QMainWindow):
         self.ui.progress_bar.setRange(0, frame_count)
         self.ui.progress_bar.show()
         for i in range(frame_count):
+            print(self.extract_frames.count + 1)
             self.ui.progress_bar.setValue(i + 1)
             QApplication.processEvents()
             time.sleep(0.01)
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         print(self.ui.progress_bar.value())
 
     def click_on_frame(self, event):
-        self.oldPos = event.globalPosition().toPoint()
+        self.oldPos = event.globalPos()
 
     def drag_window(self, event):
         if self.maximized:
@@ -109,9 +109,9 @@ class MainWindow(QMainWindow):
             self.resize_window(self)
             self.move(cursor_pos.x() - window_half_width, cursor_pos.y())
         else:
-            delta = QPoint(event.globalPosition().toPoint() - self.oldPos)
+            delta = QPoint(event.globalPos() - self.oldPos)
             self.move(self.x() + delta.x(), self.y() + delta.y())
-            self.oldPos = event.globalPosition().toPoint()
+            self.oldPos = event.globalPos()
 
     def resize_window(self, event):
         if self.isMaximized():
