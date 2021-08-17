@@ -3,6 +3,9 @@
     <file>img/glass.png</file>
   </qresource>
   <qresource prefix="system_icons">
+    <file>img/minimize.png</file>
+    <file>img/remove.png</file>
+    <file>img/maximize.png</file>
     <file>img/close.png</file>
   </qresource>
   <qresource prefix="menu">

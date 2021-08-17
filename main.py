@@ -14,7 +14,12 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.btn_minimize.clicked.connect(self.showMinimized)
+        self.max_min_icon = QIcon()
+        self.max_min_icon.addFile(u":/system_icons/img/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.ui.btn_maximize.setIcon(self.max_min_icon)
         self.setWindowFlag(Qt.FramelessWindowHint)
+        self.ui.btn_maximize.clicked.connect(self.resize_window)
         self.ui.btn_open_video.clicked.connect(self.open_video_file)
         self.ui.btn_open_frames_dir.clicked.connect(self.select_frames_dir)
         self.ui.top_bar.mousePressEvent = self.click_on_frame
@@ -108,12 +113,16 @@ class MainWindow(QMainWindow):
             self.oldPos = event.globalPos()
 
     def resize_window(self, event):
+        self.max_min_icon = QIcon()
         if self.isMaximized():
+            self.max_min_icon.addFile(u":/system_icons/img/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
             self.showNormal()
             self.maximized = False
         else:
+            self.max_min_icon.addFile(u":/system_icons/img/minimize.png", QSize(), QIcon.Normal, QIcon.Off)
             self.showMaximized()
             self.maximized = True
+        self.ui.btn_maximize.setIcon(self.max_min_icon)
 
 
 if __name__ == "__main__":
