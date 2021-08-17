@@ -32,8 +32,6 @@ class MainWindow(QMainWindow):
         self.ui.video_directory.setText(
             video_file[0]
         )
-        # self.extract_frames.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
-        # self.ui.video_directory.setText(self.extract_frames.video_file[0])
 
     def select_frames_dir(self):
         self.ui.frames_directory.setText(
@@ -88,15 +86,9 @@ class MainWindow(QMainWindow):
             QApplication.processEvents()
             time.sleep(0.01)
 
-    def setProgress(self, progress):
-        self.ui.progress_bar.setValue(progress)
-
     def finish_extraction(self):
         self.ui.btn_extract.setEnabled(True)
         self.ui.progress_bar.hide()
-
-    def set_bar_value(self):
-        print(self.ui.progress_bar.value())
 
     def click_on_frame(self, event):
         self.oldPos = event.globalPos()
