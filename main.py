@@ -1,6 +1,6 @@
 import sys
-import threading
 import os
+import time
 
 from qt_core import *
 from BoxError import BoxError
@@ -28,15 +28,17 @@ class MainWindow(QMainWindow):
         self.show()
 
     def open_video_file(self):
-        files_filter = "Video files (*.mp4, *.mkv, *.avi, *.webm)"
+        files_filter = "Video files (*.mp4 *.mkv *.webm *.avi)"
         self.extract_frames.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
-        self.extract_frames.video_file_name = self.extract_frames.video_file[0]
         self.ui.video_directory.setText(self.extract_frames.video_file[0])
 
     def select_frames_dir(self):
-        self.extract_frames.frames_dir = QFileDialog.getExistingDirectory(self, "Select Directory", QDir.homePath(),
-                                                                          QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
-        self.ui.frames_directory.setText(self.extract_frames.frames_dir)
+        self.ui.frames_directory.setText(
+            QFileDialog.getExistingDirectory(self,
+                                             "Select Directory",
+                                             QDir.homePath(),
+                                             QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+        )
 
     def validate_file_dir(self):
         message_box = BoxError()
@@ -55,10 +57,30 @@ class MainWindow(QMainWindow):
         return True
 
     def start_extraction(self):
+        self.extract_frames.video_file_name = self.ui.video_directory.text()
+        self.extract_frames.frames_dir = self.ui.frames_directory.text()
         if self.validate_file_dir():
-            self.extract_frames.thread_extraction()
-        # self.ui.progress_bar.setMaximum(self.extract_frames.frame_count)
-        # self.set_bar_value()
+            self.extract_frames.load_video()
+            self.thread = QThread()
+            self.extract_frames.moveToThread(self.thread)
+            self.thread.started.connect(self.extract_frames.extract)
+            self.extract_frames.finished.connect(self.thread.quit)
+            # self.extract_frames.finished.connect(self.extract_frames.deleteLater)
+            self.thread.finished.connect(self.thread.deleteLater)
+            self.thread.finished.connect(self.finish_extraction)
+            self.thread.start()
+            # self.ui.progress_bar.setValue(0)
+            frame_count = self.extract_frames.frame_count
+            self.ui.progress_bar.setValue(0)
+            self.ui.progress_bar.setMinimum(0)
+            self.ui.progress_bar.setMaximum(frame_count)
+            self.ui.progress_bar.show()
+            for i in range(frame_count):
+                time.sleep(0.01)
+                self.ui.progress_bar.setValue(i + 1)
+
+    def finish_extraction(self):
+        self.ui.progress_bar.hide()
 
     def set_bar_value(self):
         print(self.ui.progress_bar.value())
