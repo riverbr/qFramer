@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowEYgeNN.ui'
+## Form generated from reading UI file 'ui_main_windowNOdThh.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.1.2
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *  # type: ignore
-from PySide6.QtGui import *  # type: ignore
-from PySide6.QtWidgets import *  # type: ignore
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 import rc_rc
 
@@ -42,6 +42,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(16)
         font.setBold(False)
+        font.setWeight(50)
         self.top_label.setFont(font)
         self.top_label.setStyleSheet(u"color: rgb(232, 232, 232);")
 
@@ -121,6 +122,7 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setPointSize(12)
         font1.setBold(False)
+        font1.setWeight(50)
         self.label.setFont(font1)
         self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
