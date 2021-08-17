@@ -3,7 +3,7 @@ import os
 import time
 
 from qt_core import *
-from BoxError import BoxError
+from CustomBox import *
 from gui.windows.ui_main_window import *
 from video_processing import ExtractFrames
 
@@ -89,6 +89,9 @@ class MainWindow(QMainWindow):
     def finish_extraction(self):
         self.ui.btn_extract.setEnabled(True)
         self.ui.progress_bar.hide()
+        message_box = BoxCompleted()
+        message_box.setText("Extraction completed.")
+        message_box.exec_()
 
     def click_on_frame(self, event):
         self.oldPos = event.globalPos()
