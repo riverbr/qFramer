@@ -46,17 +46,23 @@ class MainWindow(QMainWindow):
                                              QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
         )
 
-    def validate_file_dir(self):
+    def validate_video_file(self):
+        return_value = True
         message_box = BoxError()
         video_file = self.ui.video_directory.text()
-        frames_dir = self.ui.frames_directory.text()
         is_file = os.path.isfile(video_file)
-        is_abs = os.path.isabs(frames_dir)
         if not is_file:
             message_box.setText("Select a valid video file.")
             message_box.exec()
             self.ui.video_directory.setFocus()
-            return False
+            return_value = False
+        return return_value
+
+    def validate_frames_dir(self):
+        return_value = False
+        message_box = BoxError()
+        frames_dir = self.ui.frames_directory.text()
+        is_abs = os.path.isabs(frames_dir)
         if is_abs:
             if not os.path.exists(frames_dir):
                 message_box = BoxYesNo()
@@ -64,20 +70,18 @@ class MainWindow(QMainWindow):
                 message_box.exec_()
                 if message_box.clickedButton() == message_box.button_yes:
                     os.makedirs(frames_dir, 0o777)
-                else:
-                    return False
+                    return_value = True
         else:
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
-            return False
-        return True
+        return return_value
 
     def start_extraction(self):
         self.extract_frames = ExtractFrames()
         self.extract_frames.video_file_name = self.ui.video_directory.text()
         self.extract_frames.frames_dir = self.ui.frames_directory.text()
-        if self.validate_file_dir():
+        if self.validate_video_file() and self.validate_frames_dir():
             self.ui.btn_extract.setEnabled(False)
             self.extract_frames.load_video()
             self.thread = QThread()
