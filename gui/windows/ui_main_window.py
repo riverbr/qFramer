@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowvwQdty.ui'
+## Form generated from reading UI file 'ui_main_windowdBMmlG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -105,6 +105,13 @@ class Ui_MainWindow(object):
 
         self.progress_bar = QProgressBar(self.content_area)
         self.progress_bar.setObjectName(u"progress_bar")
+        palette = QPalette()
+        brush = QBrush(QColor(0, 120, 215, 255))
+        brush.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Highlight, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Highlight, brush)
+        palette.setBrush(QPalette.Disabled, QPalette.Highlight, brush)
+        self.progress_bar.setPalette(palette)
         self.progress_bar.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.progress_bar.setValue(24)
         self.progress_bar.setTextVisible(True)
