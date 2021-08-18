@@ -1,11 +1,11 @@
 import sys
 import os
 import time
-
 from qt_core import *
 from CustomBox import *
 from gui.windows.ui_main_window import *
 from video_processing import ExtractFrames
+from about import AboutApp
 
 
 class MainWindow(QMainWindow):
@@ -22,10 +22,11 @@ class MainWindow(QMainWindow):
         self.ui.btn_maximize.clicked.connect(self.resize_window)
         self.ui.btn_open_video.clicked.connect(self.open_video_file)
         self.ui.btn_open_frames_dir.clicked.connect(self.select_frames_dir)
-        self.ui.top_bar.mousePressEvent = self.click_on_frame
+        self.ui.top_bar.mousePressEvent = self.top_bar_click
         self.ui.top_bar.mouseMoveEvent = self.drag_window
         self.ui.top_bar.mouseDoubleClickEvent = self.resize_window
         self.ui.btn_extract.clicked.connect(self.start_extraction)
+        self.ui.btn_about.clicked.connect(self.about_app)
         self.ui.progress_bar.hide()
         self.maximized = False
 
@@ -111,7 +112,7 @@ class MainWindow(QMainWindow):
         message_box.setText("Extraction completed.")
         message_box.exec_()
 
-    def click_on_frame(self, event):
+    def top_bar_click(self, event):
         self.oldPos = event.globalPos()
 
     def drag_window(self, event):
@@ -136,6 +137,13 @@ class MainWindow(QMainWindow):
             self.showMaximized()
             self.maximized = True
         self.ui.btn_maximize.setIcon(self.max_min_icon)
+
+    def closeEvent(self, event):
+        app.closeAllWindows()
+
+    def about_app(self):
+        about = AboutApp()
+        about.show()
 
 
 if __name__ == "__main__":

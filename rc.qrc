@@ -1,6 +1,9 @@
 <RCC>
-  <qresource prefix="glass">
+  <qresource prefix="buttons">
     <file>img/glass.png</file>
+  </qresource>
+  <qresource prefix="logo">
+    <file>img/logo.png</file>
   </qresource>
   <qresource prefix="system_icons">
     <file>img/minimize.png</file>

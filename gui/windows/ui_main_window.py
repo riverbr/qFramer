@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowdBMmlG.ui'
+## Form generated from reading UI file 'ui_main_windowwyTMxI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         self.btn_open_video.setObjectName(u"btn_open_video")
         self.btn_open_video.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon = QIcon()
-        icon.addFile(u":/glass/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/buttons/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_open_video.setIcon(icon)
         self.btn_open_video.setIconSize(QSize(16, 16))
 
@@ -106,11 +106,48 @@ class Ui_MainWindow(object):
         self.progress_bar = QProgressBar(self.content_area)
         self.progress_bar.setObjectName(u"progress_bar")
         palette = QPalette()
-        brush = QBrush(QColor(0, 120, 215, 255))
+        brush = QBrush(QColor(255, 255, 255, 255))
         brush.setStyle(Qt.SolidPattern)
-        palette.setBrush(QPalette.Active, QPalette.Highlight, brush)
-        palette.setBrush(QPalette.Inactive, QPalette.Highlight, brush)
-        palette.setBrush(QPalette.Disabled, QPalette.Highlight, brush)
+        palette.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        brush1 = QBrush(QColor(36, 36, 36, 255))
+        brush1.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Active, QPalette.Window, brush1)
+        brush2 = QBrush(QColor(0, 120, 215, 255))
+        brush2.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Highlight, brush2)
+        brush3 = QBrush(QColor(255, 255, 255, 128))
+        brush3.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.Active, QPalette.PlaceholderText, brush3)
+#endif
+        palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.Highlight, brush2)
+        brush4 = QBrush(QColor(255, 255, 255, 128))
+        brush4.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush4)
+#endif
+        palette.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Highlight, brush2)
+        brush5 = QBrush(QColor(255, 255, 255, 128))
+        brush5.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush5)
+#endif
         self.progress_bar.setPalette(palette)
         self.progress_bar.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.progress_bar.setValue(24)
