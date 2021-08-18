@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_about_windowEFdYlE.ui'
+## Form generated from reading UI file 'ui_about_windowfyssVX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,6 +18,7 @@ class Ui_about_window(object):
     def setupUi(self, about_window):
         if not about_window.objectName():
             about_window.setObjectName(u"about_window")
+        about_window.setWindowModality(Qt.ApplicationModal)
         about_window.resize(400, 300)
         about_window.setMinimumSize(QSize(400, 300))
         self.gridLayout = QGridLayout(about_window)
