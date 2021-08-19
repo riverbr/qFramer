@@ -61,12 +61,13 @@ class MainWindow(QMainWindow):
         return return_value
 
     def validate_frames_dir(self):
-        return_value = False
+        return_value = True
         message_box = BoxError()
         frames_dir = self.ui.frames_directory.text()
         is_abs = os.path.isabs(frames_dir)
         if is_abs:
             if not os.path.exists(frames_dir):
+                return_value = False
                 message_box = BoxYesNo()
                 message_box.setText("Folder doesn't exist. Create folder?")
                 message_box.exec_()
@@ -77,6 +78,7 @@ class MainWindow(QMainWindow):
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
+            return_value = False
         return return_value
 
     def start_extraction(self):
