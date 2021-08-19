@@ -739,22 +739,5 @@ border-radius: 2px;</string>
  <resources>
   <include location="../../rc.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>btn_close</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>883</x>
-     <y>11</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>449</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

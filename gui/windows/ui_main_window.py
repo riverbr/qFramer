@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowwyTMxI.ui'
+## Form generated from reading UI file 'ui_main_windowbnCNpw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -271,7 +271,6 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.btn_close.clicked.connect(MainWindow.close)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
