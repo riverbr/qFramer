@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_about.clicked.connect(self.about_app)
         self.ui.progress_bar.hide()
         self.maximized = False
+        self.about_window = AboutApp()
 
         self.show()
 
@@ -142,8 +143,10 @@ class MainWindow(QMainWindow):
         app.closeAllWindows()
 
     def about_app(self):
-        about = AboutApp()
-        about.show()
+        if not self.about_window.isVisible():
+            self.about_window = AboutApp()
+        self.about_window.show()
+        self.about_window.activateWindow()
 
 
 if __name__ == "__main__":
