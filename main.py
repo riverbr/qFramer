@@ -2,6 +2,7 @@ import sys
 import os
 import time
 from qt_core import *
+import keyboard
 from CustomBox import *
 from gui.windows.ui_main_window import *
 from video_processing import ExtractFrames
@@ -15,6 +16,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.btn_minimize.clicked.connect(self.showMinimized)
+        self.extract_frames = None
+        self.thread = None
         self.max_min_icon = QIcon()
         self.max_min_icon.addFile(u":/system_icons/img/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
         self.ui.btn_maximize.setIcon(self.max_min_icon)
@@ -28,6 +31,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_extract.clicked.connect(self.start_extraction)
         self.ui.btn_about.clicked.connect(self.about_app)
         self.ui.progress_bar.hide()
+        self.ui.btn_close.clicked.connect(self.close_app)
         self.maximized = False
         self.about_window = AboutApp()
 
@@ -100,20 +104,20 @@ class MainWindow(QMainWindow):
 
     def update_progress_bar(self):
         frame_count = self.extract_frames.frame_count
-        self.ui.progress_bar.setValue(0)
         self.ui.progress_bar.setRange(0, frame_count)
         self.ui.progress_bar.show()
-        while self.extract_frames.count < frame_count:
+        while self.extract_frames.count < frame_count and not self.extract_frames.thread_stopped:
             self.ui.progress_bar.setValue(self.extract_frames.count)
             QApplication.processEvents()
             time.sleep(0.01)
 
     def finish_extraction(self):
-        self.ui.btn_extract.setEnabled(True)
-        self.ui.progress_bar.hide()
-        message_box = BoxCompleted()
-        message_box.setText("Extraction completed.")
-        message_box.exec_()
+        if not self.extract_frames.thread_stopped:
+            self.ui.btn_extract.setEnabled(True)
+            self.ui.progress_bar.hide()
+            message_box = BoxCompleted()
+            message_box.setText("Extraction completed.")
+            message_box.exec_()
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
@@ -141,8 +145,16 @@ class MainWindow(QMainWindow):
             self.maximized = True
         self.ui.btn_maximize.setIcon(self.max_min_icon)
 
-    def closeEvent(self, event):
-        app.closeAllWindows()
+    def force_terminate_thread(self):
+        if self.thread.isRunning():
+            self.extract_frames.stop()
+            self.thread.terminate()
+            self.thread.wait()
+
+    def close_app(self):
+        if self.thread is not None:
+            self.force_terminate_thread()
+        app.quit()
 
     def about_app(self):
         if not self.about_window.isVisible():
