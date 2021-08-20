@@ -2,7 +2,6 @@ import sys
 import os
 import time
 from qt_core import *
-import keyboard
 from CustomBox import *
 from gui.windows.ui_main_window import *
 from video_processing import ExtractFrames
@@ -110,8 +109,6 @@ class MainWindow(QMainWindow):
         while self.extract_frames.count < frame_count and not self.extract_frames.thread_stopped:
             self.ui.progress_bar.setValue(self.extract_frames.count)
             QApplication.processEvents()
-            if keyboard.is_pressed("Esc"):
-                self.abort_extraction()
             time.sleep(0.01)
 
     def finish_extraction(self):
