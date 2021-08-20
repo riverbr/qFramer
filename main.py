@@ -18,9 +18,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_minimize.clicked.connect(self.showMinimized)
         self.extract_frames = None
         self.thread = None
-        self.max_min_icon = QIcon()
-        self.max_min_icon.addFile(u":/system_icons/img/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.ui.btn_maximize.setIcon(self.max_min_icon)
+        self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/maximize.png"))
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.ui.btn_maximize.clicked.connect(self.resize_window)
         self.ui.btn_open_video.clicked.connect(self.open_video_file)
@@ -30,7 +28,9 @@ class MainWindow(QMainWindow):
         self.ui.top_bar.mouseDoubleClickEvent = self.resize_window
         self.ui.btn_extract.clicked.connect(self.start_extraction)
         self.ui.btn_about.clicked.connect(self.about_app)
+        self.ui.btn_cancel.clicked.connect(self.abort_extraction)
         self.ui.progress_bar.hide()
+        self.ui.btn_cancel.hide()
         self.ui.btn_close.clicked.connect(self.close_app)
         self.maximized = False
         self.about_window = AboutApp()
@@ -100,6 +100,7 @@ class MainWindow(QMainWindow):
             self.thread.finished.connect(self.thread.deleteLater)
             self.thread.finished.connect(self.finish_extraction)
             self.thread.start()
+            self.ui.btn_cancel.show()
             self.update_progress_bar()
 
     def update_progress_bar(self):
@@ -109,16 +110,31 @@ class MainWindow(QMainWindow):
         while self.extract_frames.count < frame_count and not self.extract_frames.thread_stopped:
             self.ui.progress_bar.setValue(self.extract_frames.count)
             QApplication.processEvents()
+            if keyboard.is_pressed("Esc"):
+                self.abort_extraction()
             time.sleep(0.01)
 
     def finish_extraction(self):
+        self.ui.btn_extract.setEnabled(True)
+        self.ui.progress_bar.hide()
+        self.ui.btn_cancel.hide()
         if not self.extract_frames.thread_stopped:
-            self.ui.btn_extract.setEnabled(True)
-            self.ui.progress_bar.hide()
-            message_box = BoxCompleted()
+            message_box = BoxInformation()
             message_box.setText("Extraction completed.")
             message_box.exec_()
-            self.thread = None
+        self.thread = None
+
+    def abort_extraction(self):
+        self.extract_frames.wait_abort_confirmation()
+        message_box = BoxYesNo()
+        message_box.setText("Abort extraction?")
+        message_box.exec_()
+        if message_box.clickedButton() == message_box.button_yes:
+            self.force_terminate_thread()
+            message_box = BoxInformation()
+            message_box.setText("Extraction aborted.")
+            message_box.exec_()
+        self.extract_frames.abort_confirmation = False
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
@@ -135,19 +151,18 @@ class MainWindow(QMainWindow):
             self.oldPos = event.globalPos()
 
     def resize_window(self, event):
-        self.max_min_icon = QIcon()
         if self.isMaximized():
-            self.max_min_icon.addFile(u":/system_icons/img/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/maximize.png"))
             self.showNormal()
             self.maximized = False
         else:
-            self.max_min_icon.addFile(u":/system_icons/img/minimize.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/minimize.png"))
             self.showMaximized()
             self.maximized = True
-        self.ui.btn_maximize.setIcon(self.max_min_icon)
 
     def force_terminate_thread(self):
         if self.thread.isRunning():
+            self.extract_frames.abort_confirmation = False
             self.extract_frames.stop()
             self.thread.terminate()
             self.thread.wait()
