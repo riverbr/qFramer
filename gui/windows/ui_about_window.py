@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_about_windowOMHWYP.ui'
+## Form generated from reading UI file 'ui_about_windowyohChN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -20,6 +20,9 @@ class Ui_about_window(object):
             about_window.setObjectName(u"about_window")
         about_window.resize(400, 300)
         about_window.setMinimumSize(QSize(400, 300))
+        icon = QIcon()
+        icon.addFile(u":/system_icons/img/icon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        about_window.setWindowIcon(icon)
         self.gridLayout = QGridLayout(about_window)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -65,9 +68,9 @@ class Ui_about_window(object):
         self.btn_close.setMinimumSize(QSize(32, 0))
         self.btn_close.setMaximumSize(QSize(32, 32))
         self.btn_close.setStyleSheet(u"border: none;")
-        icon = QIcon()
-        icon.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_close.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_close.setIcon(icon1)
         self.btn_close.setIconSize(QSize(24, 24))
         self.btn_close.setFlat(True)
 
@@ -115,7 +118,7 @@ class Ui_about_window(object):
     # setupUi
 
     def retranslateUi(self, about_window):
-        about_window.setWindowTitle(QCoreApplication.translate("about_window", u"Dialog", None))
+        about_window.setWindowTitle(QCoreApplication.translate("about_window", u"About", None))
         self.top_label.setText(QCoreApplication.translate("about_window", u"About", None))
         self.btn_close.setText("")
         self.label.setText("")

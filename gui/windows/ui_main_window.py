@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowbnCNpw.ui'
+## Form generated from reading UI file 'ui_main_windowsyAOpJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -20,6 +20,9 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(900, 520)
         MainWindow.setMinimumSize(QSize(900, 520))
+        icon = QIcon()
+        icon.addFile(u":/system_icons/img/icon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -64,9 +67,9 @@ class Ui_MainWindow(object):
         self.btn_open_video = QPushButton(self.content_area)
         self.btn_open_video.setObjectName(u"btn_open_video")
         self.btn_open_video.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon = QIcon()
-        icon.addFile(u":/buttons/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_open_video.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/buttons/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_open_video.setIcon(icon1)
         self.btn_open_video.setIconSize(QSize(16, 16))
 
         self.gridLayout.addWidget(self.btn_open_video, 1, 2, 1, 1)
@@ -159,7 +162,7 @@ class Ui_MainWindow(object):
         self.btn_open_frames_dir = QPushButton(self.content_area)
         self.btn_open_frames_dir.setObjectName(u"btn_open_frames_dir")
         self.btn_open_frames_dir.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.btn_open_frames_dir.setIcon(icon)
+        self.btn_open_frames_dir.setIcon(icon1)
         self.btn_open_frames_dir.setIconSize(QSize(16, 16))
 
         self.gridLayout.addWidget(self.btn_open_frames_dir, 2, 2, 1, 1)
@@ -192,9 +195,9 @@ class Ui_MainWindow(object):
         self.btn_minimize.setMinimumSize(QSize(32, 0))
         self.btn_minimize.setMaximumSize(QSize(32, 16777215))
         self.btn_minimize.setStyleSheet(u"border: none;")
-        icon1 = QIcon()
-        icon1.addFile(u":/system_icons/img/remove.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_minimize.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/system_icons/img/remove.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_minimize.setIcon(icon2)
         self.btn_minimize.setIconSize(QSize(24, 24))
         self.btn_minimize.setFlat(True)
 
@@ -215,9 +218,9 @@ class Ui_MainWindow(object):
         self.btn_close.setMinimumSize(QSize(32, 0))
         self.btn_close.setMaximumSize(QSize(32, 16777215))
         self.btn_close.setStyleSheet(u"border: none;")
-        icon2 = QIcon()
-        icon2.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_close.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_close.setIcon(icon3)
         self.btn_close.setIconSize(QSize(24, 24))
         self.btn_close.setFlat(True)
 
@@ -240,9 +243,9 @@ class Ui_MainWindow(object):
         self.btn_extract.setObjectName(u"btn_extract")
         self.btn_extract.setMinimumSize(QSize(0, 46))
         self.btn_extract.setStyleSheet(u"color: rgb(255, 255, 255);")
-        icon3 = QIcon()
-        icon3.addFile(u":/menu/img/extract.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_extract.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u":/menu/img/extract.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_extract.setIcon(icon4)
         self.btn_extract.setIconSize(QSize(32, 32))
         self.btn_extract.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
         self.btn_extract.setAutoRaise(True)
@@ -257,9 +260,9 @@ class Ui_MainWindow(object):
         self.btn_about = QToolButton(self.menu)
         self.btn_about.setObjectName(u"btn_about")
         self.btn_about.setMinimumSize(QSize(0, 46))
-        icon4 = QIcon()
-        icon4.addFile(u":/menu/img/info.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_about.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/menu/img/info.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_about.setIcon(icon5)
         self.btn_about.setIconSize(QSize(28, 28))
         self.btn_about.setAutoRaise(True)
 
@@ -269,6 +272,14 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.menu, 1, 0, 1, 2)
 
         MainWindow.setCentralWidget(self.centralwidget)
+        QWidget.setTabOrder(self.video_directory, self.btn_open_video)
+        QWidget.setTabOrder(self.btn_open_video, self.frames_directory)
+        QWidget.setTabOrder(self.frames_directory, self.btn_open_frames_dir)
+        QWidget.setTabOrder(self.btn_open_frames_dir, self.btn_about)
+        QWidget.setTabOrder(self.btn_about, self.btn_extract)
+        QWidget.setTabOrder(self.btn_extract, self.btn_minimize)
+        QWidget.setTabOrder(self.btn_minimize, self.btn_maximize)
+        QWidget.setTabOrder(self.btn_maximize, self.btn_close)
 
         self.retranslateUi(MainWindow)
 
@@ -276,7 +287,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"qFramer", None))
         self.top_label.setText(QCoreApplication.translate("MainWindow", u"qFramer", None))
         self.btn_open_video.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Save Frames to:", None))

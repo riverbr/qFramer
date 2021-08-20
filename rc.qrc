@@ -6,6 +6,7 @@
     <file>img/logo.png</file>
   </qresource>
   <qresource prefix="system_icons">
+    <file>img/icon.ico</file>
     <file>img/minimize.png</file>
     <file>img/remove.png</file>
     <file>img/maximize.png</file>

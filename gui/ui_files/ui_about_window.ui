@@ -17,7 +17,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>About</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../rc.qrc">
+    <normaloff>:/system_icons/img/icon.ico</normaloff>:/system_icons/img/icon.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
