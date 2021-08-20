@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowsyAOpJ.ui'
+## Form generated from reading UI file 'ui_main_windowxJdnUp.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -64,11 +64,23 @@ class Ui_MainWindow(object):
         self.gridLayout = QGridLayout(self.content_area)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setVerticalSpacing(18)
+        self.verticalSpacer_2 = QSpacerItem(20, 18, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout.addItem(self.verticalSpacer_2, 0, 0, 1, 3)
+
+        self.btn_open_frames_dir = QPushButton(self.content_area)
+        self.btn_open_frames_dir.setObjectName(u"btn_open_frames_dir")
+        self.btn_open_frames_dir.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon1 = QIcon()
+        icon1.addFile(u":/buttons/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_open_frames_dir.setIcon(icon1)
+        self.btn_open_frames_dir.setIconSize(QSize(16, 16))
+
+        self.gridLayout.addWidget(self.btn_open_frames_dir, 2, 2, 1, 1)
+
         self.btn_open_video = QPushButton(self.content_area)
         self.btn_open_video.setObjectName(u"btn_open_video")
         self.btn_open_video.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon1 = QIcon()
-        icon1.addFile(u":/buttons/img/glass.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_open_video.setIcon(icon1)
         self.btn_open_video.setIconSize(QSize(16, 16))
 
@@ -86,6 +98,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
 
+        self.label = QLabel(self.content_area)
+        self.label.setObjectName(u"label")
+        self.label.setFont(font1)
+        self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
+
         self.frames_directory = QLineEdit(self.content_area)
         self.frames_directory.setObjectName(u"frames_directory")
         self.frames_directory.setStyleSheet(u"color: rgb(255, 255, 255);\n"
@@ -93,10 +113,6 @@ class Ui_MainWindow(object):
 "border-radius: 2px;")
 
         self.gridLayout.addWidget(self.frames_directory, 2, 1, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 18, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout.addItem(self.verticalSpacer_2, 0, 0, 1, 3)
 
         self.video_directory = QLineEdit(self.content_area)
         self.video_directory.setObjectName(u"video_directory")
@@ -159,25 +175,18 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.progress_bar, 3, 1, 1, 1)
 
-        self.btn_open_frames_dir = QPushButton(self.content_area)
-        self.btn_open_frames_dir.setObjectName(u"btn_open_frames_dir")
-        self.btn_open_frames_dir.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.btn_open_frames_dir.setIcon(icon1)
-        self.btn_open_frames_dir.setIconSize(QSize(16, 16))
-
-        self.gridLayout.addWidget(self.btn_open_frames_dir, 2, 2, 1, 1)
-
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addItem(self.verticalSpacer, 4, 0, 1, 3)
+        self.gridLayout.addItem(self.verticalSpacer, 6, 0, 1, 3)
 
-        self.label = QLabel(self.content_area)
-        self.label.setObjectName(u"label")
-        self.label.setFont(font1)
-        self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.label.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.btn_cancel = QPushButton(self.content_area)
+        self.btn_cancel.setObjectName(u"btn_cancel")
+        self.btn_cancel.setMinimumSize(QSize(100, 24))
+        self.btn_cancel.setMaximumSize(QSize(100, 24))
+        self.btn_cancel.setStyleSheet(u"color: rgb(255, 255, 255);")
+        self.btn_cancel.setAutoDefault(True)
 
-        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.btn_cancel, 5, 1, 1, 1, Qt.AlignHCenter)
 
 
         self.gridLayout_2.addWidget(self.content_area, 2, 0, 1, 2)
@@ -275,9 +284,10 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.video_directory, self.btn_open_video)
         QWidget.setTabOrder(self.btn_open_video, self.frames_directory)
         QWidget.setTabOrder(self.frames_directory, self.btn_open_frames_dir)
-        QWidget.setTabOrder(self.btn_open_frames_dir, self.btn_about)
-        QWidget.setTabOrder(self.btn_about, self.btn_extract)
-        QWidget.setTabOrder(self.btn_extract, self.btn_minimize)
+        QWidget.setTabOrder(self.btn_open_frames_dir, self.btn_extract)
+        QWidget.setTabOrder(self.btn_extract, self.btn_cancel)
+        QWidget.setTabOrder(self.btn_cancel, self.btn_about)
+        QWidget.setTabOrder(self.btn_about, self.btn_minimize)
         QWidget.setTabOrder(self.btn_minimize, self.btn_maximize)
         QWidget.setTabOrder(self.btn_maximize, self.btn_close)
 
@@ -289,10 +299,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"qFramer", None))
         self.top_label.setText(QCoreApplication.translate("MainWindow", u"qFramer", None))
+        self.btn_open_frames_dir.setText("")
         self.btn_open_video.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Save Frames to:", None))
-        self.btn_open_frames_dir.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Select Video:", None))
+        self.btn_cancel.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.btn_minimize.setText("")
         self.btn_maximize.setText("")
         self.btn_close.setText("")
