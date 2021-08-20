@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+from pathlib import Path
 from qt_core import *
 from CustomBox import *
 from gui.windows.ui_main_window import *
@@ -65,19 +66,28 @@ class MainWindow(QMainWindow):
 
     def validate_frames_dir(self):
         return_value = True
-        message_box = BoxError()
         frames_dir = self.ui.frames_directory.text()
+        file_name = f"{frames_dir}/frame0.jpg"
+        file = Path(file_name)
         is_abs = os.path.isabs(frames_dir)
         if is_abs:
+            message_box = BoxYesNo()
+            if file.exists():
+                message_box.setText(
+                    "There are extracted frames in this directory. Overwrite them?"
+                )
+                message_box.exec_()
+                if message_box.clickedButton() != message_box.button_yes:
+                    return_value = False
             if not os.path.exists(frames_dir):
                 return_value = False
-                message_box = BoxYesNo()
                 message_box.setText("Folder doesn't exist. Create folder?")
                 message_box.exec_()
                 if message_box.clickedButton() == message_box.button_yes:
                     os.makedirs(frames_dir, 0o777)
                     return_value = True
         else:
+            message_box = BoxError()
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
