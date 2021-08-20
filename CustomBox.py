@@ -8,11 +8,11 @@ class Box(QMessageBox):
         self.setStandardButtons(QMessageBox.Ok)
 
 
-class BoxCompleted(Box):
+class BoxInformation(Box):
     def __init__(self):
-        super(BoxCompleted, self).__init__()
+        super(BoxInformation, self).__init__()
         self.setIcon(QMessageBox.Information)
-        self.setWindowTitle('Success')
+        self.setWindowTitle('Info')
 
 
 class BoxError(Box):
