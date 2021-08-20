@@ -118,6 +118,7 @@ class MainWindow(QMainWindow):
             message_box = BoxCompleted()
             message_box.setText("Extraction completed.")
             message_box.exec_()
+            self.thread = None
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
@@ -166,5 +167,6 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
+    app.setApplicationName("qFramer")
     window = MainWindow()
     sys.exit(app.exec_())
