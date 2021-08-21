@@ -141,7 +141,6 @@ class MainWindow(QMainWindow):
             message_box = BoxInformation()
             message_box.setText("Extraction aborted.")
             message_box.exec_()
-        self.extract_frames.abort_confirmation = False
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
