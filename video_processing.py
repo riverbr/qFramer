@@ -37,6 +37,6 @@ class ExtractFrames(QObject):
     def stop(self):
         self.thread_stopped = True
 
-    def wait_abort_confirmation(self):
-        self.abort_confirmation = True
+    def wait_abort_confirmation(self, abort):
+        self.abort_confirmation = abort
 

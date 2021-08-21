@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
         self.thread = None
 
     def abort_extraction(self):
-        self.extract_frames.wait_abort_confirmation()
+        self.extract_frames.wait_abort_confirmation(True)
         message_box = BoxYesNo()
         message_box.setText("Abort extraction?")
         message_box.exec_()
@@ -141,6 +141,7 @@ class MainWindow(QMainWindow):
             message_box = BoxInformation()
             message_box.setText("Extraction aborted.")
             message_box.exec_()
+        self.extract_frames.wait_abort_confirmation(False)
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
@@ -168,7 +169,7 @@ class MainWindow(QMainWindow):
 
     def force_terminate_thread(self):
         if self.thread.isRunning():
-            self.extract_frames.abort_confirmation = False
+            self.extract_frames.wait_abort_confirmation(False)
             self.extract_frames.stop()
             self.thread.terminate()
             self.thread.wait()
