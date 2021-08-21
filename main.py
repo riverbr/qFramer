@@ -55,7 +55,7 @@ class MainWindow(QMainWindow):
     def validate_video_file(self):
         return_value = True
         message_box = BoxError()
-        video_file = self.ui.video_directory.text()
+        video_file = self.extract_frames.video_file_name
         is_file = os.path.isfile(video_file)
         if not is_file:
             message_box.setText("Select a valid video file.")
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 
     def validate_frames_dir(self):
         return_value = True
-        frames_dir = self.ui.frames_directory.text()
+        frames_dir = self.extract_frames.frames_dir
         file_name = f"{frames_dir}/frame0.jpg"
         file = Path(file_name)
         is_abs = os.path.isabs(frames_dir)

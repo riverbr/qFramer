@@ -8,7 +8,6 @@ class ExtractFrames(QObject):
     def __init__(self):
         super().__init__()
 
-        self.video_file = ""
         self.video_file_name = ""
         self.frames_dir = ""
         self.frame_count = 0
@@ -18,8 +17,7 @@ class ExtractFrames(QObject):
 
     def load_video(self):
         self.frames_dir.replace("\\", "/")
-        self.video_name = self.video_file_name
-        self.vidcap = cv2.VideoCapture(self.video_name)
+        self.vidcap = cv2.VideoCapture(self.video_file_name)
         self.frame_count = int(self.vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     def extract(self):
