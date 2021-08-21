@@ -11,4 +11,5 @@ Currently tested and support the following video files:
 **qFramer only supports Windows x64 bits.**
 
 Check the [Release](https://github.com/riverbr/qFramer/releases) page for downloads.
+
 [Report bugs](https://github.com/riverbr/qFramer/issues) 
