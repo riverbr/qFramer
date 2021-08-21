@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_about_windowAMPJPY.ui'
+## Form generated from reading UI file 'ui_about_windowEXaXHg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -122,6 +122,6 @@ class Ui_about_window(object):
         self.top_label.setText(QCoreApplication.translate("about_window", u"About", None))
         self.btn_close.setText("")
         self.label.setText("")
-        self.lbl_about.setText(QCoreApplication.translate("about_window", u"<html><head/><body><p>qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.</p><p>qFramer: 0.1.0</p><p>Qt: 5.15.2</p><p>OpenCV 4.5.3.56: </p><p>System Icons by Microsoft on <a href=\"www.iconscout.com\"><span style=\" text-decoration: underline; color:#007acc;\">IconScout</span></a></p></body></html>", None))
+        self.lbl_about.setText(QCoreApplication.translate("about_window", u"<html><head/><body><p>qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.</p><p>qFramer: 0.1.0</p><p>Qt: 5.15.2</p><p>OpenCV 4.5.3.56 </p><p>System Icons by Microsoft on <a href=\"www.iconscout.com\"><span style=\" text-decoration: underline; color:#007acc;\">IconScout</span></a></p></body></html>", None))
     # retranslateUi
 
