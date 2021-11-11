@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import glob
 from pathlib import Path
 from qt_core import *
 from CustomBox import *
@@ -66,32 +67,34 @@ class MainWindow(QMainWindow):
 
     def validate_frames_dir(self):
         return_value = True
+        to_create_folder = False
+        confirm_dialog = True
         frames_dir = self.extract_frames.frames_dir
-        file_name = f"{frames_dir}/frame0.jpg"
-        file = Path(file_name)
+        file_list = glob.glob(f"{frames_dir}/frame*.jpg")
         is_abs = os.path.isabs(frames_dir)
         if is_abs:
             message_box = BoxYesNo()
-            if file.exists():
-                message_box.setText(
-                    "There are extracted frames in this directory. Overwrite them?"
-                )
-                message_box.exec_()
-                if message_box.clickedButton() != message_box.button_yes:
-                    return_value = False
             if not os.path.exists(frames_dir):
-                return_value = False
+                to_create_folder = True 
                 message_box.setText("Folder doesn't exist. Create folder?")
                 message_box.exec_()
+            elif len(file_list) > 0:
+                message_box.setText("There are extracted frames in this directory. Overwrite them?")
+                message_box.exec_()
+            else:
+                confirm_dialog = False
+            if confirm_dialog:
                 if message_box.clickedButton() == message_box.button_yes:
-                    os.makedirs(frames_dir, 0o777)
-                    return_value = True
+                    if to_create_folder:
+                        os.makedirs(frames_dir, 0o777)
+                else:
+                    return_value = False
         else:
+            return_value = False
             message_box = BoxError()
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
-            return_value = False
         return return_value
 
     def start_extraction(self):
