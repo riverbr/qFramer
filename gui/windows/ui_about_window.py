@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_about_windowJJSSkU.ui'
+## Form generated from reading UI file 'ui_about_windowDGGgkl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -67,7 +67,10 @@ class Ui_about_window(object):
         self.btn_close.setObjectName(u"btn_close")
         self.btn_close.setMinimumSize(QSize(32, 0))
         self.btn_close.setMaximumSize(QSize(32, 32))
-        self.btn_close.setStyleSheet(u"border: none;")
+        self.btn_close.setStyleSheet(u"QPushButton::hover {;\n"
+"	border: 1px solid #dc3545;\n"
+"    background-color: #dc3545;\n"
+"}")
         icon1 = QIcon()
         icon1.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_close.setIcon(icon1)
@@ -122,6 +125,6 @@ class Ui_about_window(object):
         self.top_label.setText(QCoreApplication.translate("about_window", u"About", None))
         self.btn_close.setText("")
         self.label.setText("")
-        self.lbl_about.setText(QCoreApplication.translate("about_window", u"<html><head/><body><p>qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.</p><p>qFramer: 0.1.0</p><p>Qt: 5.15.2</p><p>OpenCV: 4.5.3.56 </p><p>System Icons by Microsoft on <a href=\"www.iconscout.com\"><span style=\" text-decoration: underline; color:#007acc;\">IconScout</span></a></p></body></html>", None))
+        self.lbl_about.setText(QCoreApplication.translate("about_window", u"<html><head/><body><p>qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.</p><p>qFramer: 0.1.0</p><p>Qt: 5.15.2</p><p>OpenCV: 4.5.4.60</p><p>System Icons by Microsoft on <a href=\"www.iconscout.com\"><span style=\" text-decoration: underline; color:#007acc;\">IconScout</span></a></p></body></html>", None))
     # retranslateUi
 

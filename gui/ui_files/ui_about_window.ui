@@ -153,7 +153,10 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;</string>
+         <string notr="true">QPushButton::hover {;
+	border: 1px solid #dc3545;
+    background-color: #dc3545;
+}</string>
         </property>
         <property name="text">
          <string/>
@@ -225,7 +228,7 @@
          <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.&lt;/p&gt;&lt;p&gt;qFramer: 0.1.0&lt;/p&gt;&lt;p&gt;Qt: 5.15.2&lt;/p&gt;&lt;p&gt;OpenCV: 4.5.3.56 &lt;/p&gt;&lt;p&gt;System Icons by Microsoft on &lt;a href=&quot;www.iconscout.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007acc;&quot;&gt;IconScout&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;qFramer is a free video frame extraction tool developed in Python, based on Qt toolkit (PySide2) and OpenCV.&lt;/p&gt;&lt;p&gt;qFramer: 0.1.0&lt;/p&gt;&lt;p&gt;Qt: 5.15.2&lt;/p&gt;&lt;p&gt;OpenCV: 4.5.4.60&lt;/p&gt;&lt;p&gt;System Icons by Microsoft on &lt;a href=&quot;www.iconscout.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007acc;&quot;&gt;IconScout&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
