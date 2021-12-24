@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.ui.top_bar.mouseDoubleClickEvent = self.resize_window
         self.ui.btn_extract.clicked.connect(self.start_extraction)
         self.ui.btn_about.clicked.connect(self.about_app)
+        self.ui.ckResize.clicked.connect(self.resize_video)
         self.ui.btn_cancel.clicked.connect(self.abort_extraction)
         self.ui.progress_bar.hide()
         self.ui.btn_cancel.hide()
@@ -53,8 +54,22 @@ class MainWindow(QMainWindow):
                                              QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
         )
 
+    def resize_video(self):
+        resize = self.ui.ckResize.isChecked()
+        if resize:
+            self.ui.sbWidth.setEnabled(resize)
+            self.ui.sbHeight.setEnabled(resize)
+        else:
+            self.ui.sbWidth.setEnabled(resize)
+            self.ui.sbHeight.setEnabled(resize)
+        return resize
+
+    def get_resize_dimensions(self):
+        self.extract_frames.width = self.ui.sbWidth.value()
+        self.extract_frames.height = self.ui.sbHeight.value()
+
     def validate_video_file(self):
-        return_value = True
+        ret = True
         message_box = BoxError()
         video_file = self.extract_frames.video_file_name
         is_file = os.path.isfile(video_file)
@@ -62,17 +77,17 @@ class MainWindow(QMainWindow):
             message_box.setText("Select a valid video file.")
             message_box.exec()
             self.ui.video_directory.setFocus()
-            return_value = False
-        return return_value
+            ret = False
+        return ret
 
     def validate_frames_dir(self):
-        return_value = True
-        to_create_folder = False
-        confirm_dialog = True
+        ret = True
         frames_dir = self.extract_frames.frames_dir
-        file_list = glob.glob(f"{frames_dir}/frame*.jpg")
         is_abs = os.path.isabs(frames_dir)
         if is_abs:
+            to_create_folder = False
+            confirm_dialog = True
+            file_list = glob.glob(f"{frames_dir}/frame*.jpg")
             message_box = BoxYesNo()
             if not os.path.exists(frames_dir):
                 to_create_folder = True 
@@ -88,20 +103,23 @@ class MainWindow(QMainWindow):
                     if to_create_folder:
                         os.makedirs(frames_dir, 0o777)
                 else:
-                    return_value = False
+                    ret = False
         else:
-            return_value = False
+            ret = False
             message_box = BoxError()
             message_box.setText("Select a valid directory.")
             message_box.exec()
             self.ui.frames_directory.setFocus()
-        return return_value
+        return ret
 
     def start_extraction(self):
         self.extract_frames = ExtractFrames()
         self.extract_frames.video_file_name = self.ui.video_directory.text()
         self.extract_frames.frames_dir = self.ui.frames_directory.text()
         if self.validate_video_file() and self.validate_frames_dir():
+            self.extract_frames.resize = self.resize_video()
+            if self.extract_frames.resize:
+                self.get_resize_dimensions()
             self.ui.btn_extract.setEnabled(False)
             self.extract_frames.load_video()
             self.thread = QThread()
