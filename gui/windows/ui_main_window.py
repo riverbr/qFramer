@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowJZtOoM.ui'
+## Form generated from reading UI file 'ui_main_windowqPUIMU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -158,6 +158,11 @@ class Ui_MainWindow(object):
         self.ckResize.setObjectName(u"ckResize")
         self.ckResize.setMaximumSize(QSize(80, 16777215))
         self.ckResize.setFont(font1)
+        self.ckResize.setStyleSheet(u"QToolTip {;\n"
+"	border: 1px solid black;\n"
+"    color: white;\n"
+"	border-radius: 5px;\n"
+"}")
 
         self.gridLayout_3.addWidget(self.ckResize, 0, 0, 1, 1)
 
@@ -404,6 +409,12 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Options", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Height:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Width:", None))
+#if QT_CONFIG(tooltip)
+        self.ckResize.setToolTip(QCoreApplication.translate("MainWindow", u"Resize the frames size.\n"
+"\n"
+"*Larger resolutions will take longer to process \n"
+"and will result in larger file sizes.", None))
+#endif // QT_CONFIG(tooltip)
         self.ckResize.setText(QCoreApplication.translate("MainWindow", u"Resize", None))
         self.btn_minimize.setText("")
         self.btn_maximize.setText("")
