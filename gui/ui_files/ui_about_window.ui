@@ -154,8 +154,8 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton::hover {;
-	border: 1px solid #dc3545;
-    background-color: #dc3545;
+	border: 1px solid #ed4245;
+    background-color: #ed4245;
 }</string>
         </property>
         <property name="text">

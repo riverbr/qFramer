@@ -68,8 +68,8 @@ class Ui_about_window(object):
         self.btn_close.setMinimumSize(QSize(32, 0))
         self.btn_close.setMaximumSize(QSize(32, 32))
         self.btn_close.setStyleSheet(u"QPushButton::hover {;\n"
-"	border: 1px solid #dc3545;\n"
-"    background-color: #dc3545;\n"
+"	border: 1px solid #ed4245;\n"
+"    background-color: #ed4245;\n"
 "}")
         icon1 = QIcon()
         icon1.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)

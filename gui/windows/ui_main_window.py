@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowEbjqov.ui'
+## Form generated from reading UI file 'ui_main_windowJZtOoM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -131,12 +131,13 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setVerticalSpacing(0)
         self.gridLayout_3.setContentsMargins(-1, 0, -1, 0)
-        self.horizontalSpacer_3 = QSpacerItem(550, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(0, 0, QSizePolicy.MinimumExpanding, QSizePolicy.Minimum)
 
         self.gridLayout_3.addItem(self.horizontalSpacer_3, 2, 6, 1, 1)
 
         self.label_4 = QLabel(self.groupBox)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setMinimumSize(QSize(67, 23))
         self.label_4.setFont(font1)
         self.label_4.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_4.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -145,6 +146,7 @@ class Ui_MainWindow(object):
 
         self.label_3 = QLabel(self.groupBox)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setMinimumSize(QSize(67, 23))
         self.label_3.setFont(font1)
         self.label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -290,8 +292,8 @@ class Ui_MainWindow(object):
         self.btn_close.setMaximumSize(QSize(32, 16777215))
         self.btn_close.setFocusPolicy(Qt.NoFocus)
         self.btn_close.setStyleSheet(u"QPushButton::hover {;\n"
-"	border: 1px solid #dc3545;\n"
-"    background-color: #dc3545;\n"
+"	border: 1px solid #ed4245;\n"
+"    background-color: #ed4245;\n"
 "}")
         icon4 = QIcon()
         icon4.addFile(u":/system_icons/img/close.png", QSize(), QIcon.Normal, QIcon.Off)

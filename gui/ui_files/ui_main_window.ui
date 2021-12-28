@@ -278,18 +278,18 @@ border-radius: 2px;</string>
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>550</width>
-              <height>20</height>
-             </size>
+             <enum>QSizePolicy::MinimumExpanding</enum>
             </property>
            </spacer>
           </item>
           <item row="2" column="4">
            <widget class="QLabel" name="label_4">
+            <property name="minimumSize">
+             <size>
+              <width>67</width>
+              <height>23</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -308,6 +308,12 @@ border-radius: 2px;</string>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_3">
+            <property name="minimumSize">
+             <size>
+              <width>67</width>
+              <height>23</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -787,8 +793,8 @@ border-radius: 2px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton::hover {;
-	border: 1px solid #dc3545;
-    background-color: #dc3545;
+	border: 1px solid #ed4245;
+    background-color: #ed4245;
 }</string>
          </property>
          <property name="text">
