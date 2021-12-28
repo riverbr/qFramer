@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_main_windowADVoAy.ui'
+## Form generated from reading UI file 'ui_main_windowEbjqov.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -254,6 +254,7 @@ class Ui_MainWindow(object):
         self.btn_minimize.setObjectName(u"btn_minimize")
         self.btn_minimize.setMinimumSize(QSize(32, 0))
         self.btn_minimize.setMaximumSize(QSize(32, 16777215))
+        self.btn_minimize.setFocusPolicy(Qt.NoFocus)
         self.btn_minimize.setStyleSheet(u"QPushButton::hover {;\n"
 "	border: 1px solid #606062;\n"
 "    background-color: #606062;\n"
@@ -270,6 +271,7 @@ class Ui_MainWindow(object):
         self.btn_maximize.setObjectName(u"btn_maximize")
         self.btn_maximize.setMinimumSize(QSize(32, 0))
         self.btn_maximize.setMaximumSize(QSize(32, 16777215))
+        self.btn_maximize.setFocusPolicy(Qt.NoFocus)
         self.btn_maximize.setStyleSheet(u"QPushButton::hover {;\n"
 "	border: 1px solid #606062;\n"
 "    background-color: #606062;\n"
@@ -286,6 +288,7 @@ class Ui_MainWindow(object):
         self.btn_close.setObjectName(u"btn_close")
         self.btn_close.setMinimumSize(QSize(32, 0))
         self.btn_close.setMaximumSize(QSize(32, 16777215))
+        self.btn_close.setFocusPolicy(Qt.NoFocus)
         self.btn_close.setStyleSheet(u"QPushButton::hover {;\n"
 "	border: 1px solid #dc3545;\n"
 "    background-color: #dc3545;\n"

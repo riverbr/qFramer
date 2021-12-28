@@ -700,6 +700,9 @@ border-radius: 2px;</string>
            <height>16777215</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton::hover {;
 	border: 1px solid #606062;
@@ -738,6 +741,9 @@ border-radius: 2px;</string>
            <height>16777215</height>
           </size>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton::hover {;
 	border: 1px solid #606062;
@@ -775,6 +781,9 @@ border-radius: 2px;</string>
            <width>32</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton::hover {;
