@@ -19,9 +19,11 @@ class MainWindow(QMainWindow):
         self.ui.btn_minimize.clicked.connect(self.showMinimized)
         self.extract_frames = None
         self.thread = None
-        self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/maximize.png"))
+        self.video_file = None
+        self.single_click = False
         self.setWindowFlag(Qt.FramelessWindowHint)
-        self.ui.btn_maximize.clicked.connect(self.resize_window)
+        self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/maximize.png"))
+        self.ui.btn_maximize.clicked.connect(lambda: self.resize_window(QEvent, dblClick=True))
         self.ui.btn_open_video.clicked.connect(self.open_video_file)
         self.ui.btn_open_frames_dir.clicked.connect(self.select_frames_dir)
         self.ui.top_bar.mousePressEvent = self.top_bar_click
@@ -34,17 +36,19 @@ class MainWindow(QMainWindow):
         self.ui.progress_bar.hide()
         self.ui.btn_cancel.hide()
         self.ui.btn_close.clicked.connect(self.close_app)
-        self.maximized = False
         self.about_window = AboutApp()
 
         self.show()
 
     def open_video_file(self):
         files_filter = "Video files (*.mp4 *.mkv *.webm *.avi)"
-        video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
-        self.ui.video_directory.setText(
-            video_file[0]
-        )
+        self.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
+        self.ui.video_directory.setText(self.video_file[0])
+        self.extract_frames = ExtractFrames()
+        self.video_file = self.ui.video_directory.text()
+        self.extract_frames.load_video(self.video_file)
+        self.ui.sbWidth.setValue(self.extract_frames.og_width)
+        self.ui.sbHeight.setValue(self.extract_frames.og_height)
 
     def select_frames_dir(self):
         self.ui.frames_directory.setText(
@@ -65,14 +69,13 @@ class MainWindow(QMainWindow):
         return resize
 
     def get_resize_dimensions(self):
-        self.extract_frames.width = self.ui.sbWidth.value()
-        self.extract_frames.height = self.ui.sbHeight.value()
+        self.extract_frames.resize_width = self.ui.sbWidth.value()
+        self.extract_frames.resize_height = self.ui.sbHeight.value()
 
     def validate_video_file(self):
         ret = True
         message_box = BoxError()
-        video_file = self.extract_frames.video_file_name
-        is_file = os.path.isfile(video_file)
+        is_file = os.path.isfile(self.video_file)
         if not is_file:
             message_box.setText("Select a valid video file.")
             message_box.exec()
@@ -113,15 +116,14 @@ class MainWindow(QMainWindow):
         return ret
 
     def start_extraction(self):
-        self.extract_frames = ExtractFrames()
-        self.extract_frames.video_file_name = self.ui.video_directory.text()
         self.extract_frames.frames_dir = self.ui.frames_directory.text()
         if self.validate_video_file() and self.validate_frames_dir():
+            self.ui.btn_extract.setEnabled(False)
             self.extract_frames.resize = self.resize_video()
             if self.extract_frames.resize:
                 self.get_resize_dimensions()
-            self.ui.btn_extract.setEnabled(False)
-            self.extract_frames.load_video()
+            if not self.extract_frames.vidcap:
+                self.extract_frames.load_video(self.video_file)
             self.thread = QThread()
             self.extract_frames.moveToThread(self.thread)
             self.thread.started.connect(self.extract_frames.extract)
@@ -132,6 +134,7 @@ class MainWindow(QMainWindow):
             self.thread.start()
             self.ui.btn_cancel.show()
             self.update_progress_bar()
+            self.extract_frames = ExtractFrames()
 
     def update_progress_bar(self):
         frame_count = self.extract_frames.frame_count
@@ -166,27 +169,29 @@ class MainWindow(QMainWindow):
 
     def top_bar_click(self, event):
         self.oldPos = event.globalPos()
+        self.single_click = True
 
     def drag_window(self, event):
-        if self.maximized:
-            cursor_pos = QCursor.pos()
-            window_half_width = self.minimumWidth() / 2
-            self.resize_window(self)
-            self.move(cursor_pos.x() - window_half_width, cursor_pos.y())
-        else:
-            delta = QPoint(event.globalPos() - self.oldPos)
-            self.move(self.x() + delta.x(), self.y() + delta.y())
-            self.oldPos = event.globalPos()
+        if self.single_click:
+            if self.isMaximized():
+                cursor_pos = QCursor.pos()
+                window_half_width = self.minimumWidth() / 2
+                self.resize_window(self, dblClick=False)
+                self.move(cursor_pos.x() - window_half_width, cursor_pos.y())
+            else:
+                delta = QPoint(event.globalPos() - self.oldPos)
+                self.move(self.x() + delta.x(), self.y() + delta.y())
+                self.oldPos = event.globalPos()
 
-    def resize_window(self, event):
+    def resize_window(self, event, dblClick=True):
+        if dblClick:
+            self.single_click = False
         if self.isMaximized():
             self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/maximize.png"))
             self.showNormal()
-            self.maximized = False
         else:
             self.ui.btn_maximize.setIcon(QIcon(u":/system_icons/img/minimize.png"))
             self.showMaximized()
-            self.maximized = True
 
     def force_terminate_thread(self):
         if self.thread.isRunning():

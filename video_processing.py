@@ -7,10 +7,10 @@ class ExtractFrames(QObject):
 
     def __init__(self):
         super().__init__()
-
-        self.video_file_name = ""
+        self.video_file = ""
         self.frames_dir = ""
         self.frame_count = 0
+        self.vidcap = None
         self.count = 0
         self.thread_stopped = False
         self.abort_confirmation = False
@@ -20,10 +20,12 @@ class ExtractFrames(QObject):
         self.resize_width = 0
         self.resize_height = 0
 
-    def load_video(self):
+    def load_video(self, video):
         self.frames_dir.replace("\\", "/")
-        self.vidcap = cv2.VideoCapture(self.video_file_name)
+        self.vidcap = cv2.VideoCapture(video)
         self.frame_count = int(self.vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
+        self.og_width = int(self.vidcap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.og_height = int(self.vidcap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     def extract(self):
         success, image = self.vidcap.read()
