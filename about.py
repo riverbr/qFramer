@@ -1,4 +1,4 @@
-from gui.windows.ui_about_window import *
+from gui.py_files.ui_about_window import *
 
 
 class AboutApp(QDialog):

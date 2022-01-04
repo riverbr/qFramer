@@ -5,7 +5,7 @@ import glob
 from pathlib import Path
 from qt_core import *
 from CustomBox import *
-from gui.windows.ui_main_window import *
+from gui.py_files.ui_main_window import *
 from video_processing import ExtractFrames
 from about import AboutApp
 
@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.btn_minimize.clicked.connect(self.showMinimized)
-        self.extract_frames = None
+        self.extract_frames = ExtractFrames()
         self.thread = None
         self.video_file = None
         self.single_click = False
@@ -43,12 +43,11 @@ class MainWindow(QMainWindow):
     def open_video_file(self):
         files_filter = "Video files (*.mp4 *.mkv *.webm *.avi)"
         self.video_file = QFileDialog.getOpenFileName(self, "Open Video", QDir.homePath(), files_filter)
-        self.ui.video_directory.setText(self.video_file[0])
-        self.extract_frames = ExtractFrames()
-        self.video_file = self.ui.video_directory.text()
-        self.extract_frames.load_video(self.video_file)
-        self.ui.sbWidth.setValue(self.extract_frames.og_width)
-        self.ui.sbHeight.setValue(self.extract_frames.og_height)
+        if self.video_file[0]:
+            self.ui.video_directory.setText(self.video_file[0])
+            self.extract_frames.load_video(self.video_file[0])
+            self.ui.sbWidth.setValue(self.extract_frames.og_width)
+            self.ui.sbHeight.setValue(self.extract_frames.og_height)
 
     def select_frames_dir(self):
         self.ui.frames_directory.setText(
@@ -116,6 +115,7 @@ class MainWindow(QMainWindow):
         return ret
 
     def start_extraction(self):
+        self.video_file = self.ui.video_directory.text()
         self.extract_frames.frames_dir = self.ui.frames_directory.text()
         if self.validate_video_file() and self.validate_frames_dir():
             self.ui.btn_extract.setEnabled(False)
