@@ -3,7 +3,7 @@
 
 #IDE pref folder
 .idea/
-.vs/
+.vscode/
 
 #ini files
 *.ini
