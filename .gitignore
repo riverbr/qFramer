@@ -4,6 +4,7 @@
 #IDE pref folder
 .idea/
 .vscode/
+.vs/
 
 #ini files
 *.ini
